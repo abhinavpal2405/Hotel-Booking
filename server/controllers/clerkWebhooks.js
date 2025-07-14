@@ -1,8 +1,8 @@
-import User from '../models/User.js';
 
+import User from '../models/User.js';
 import { Webhook } from "svix";
 
-const clerWebhooks = async ()=>{
+const clerWebhooks = async (req, res)=>{
     console.log("Attempt login")
     try{
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
@@ -15,10 +15,10 @@ const clerWebhooks = async ()=>{
             "svix-signature":req.headers["sevix-signature"]
         };
         //verifying header
-        await whook.verify(JSON.stringify(req.body),headers)
+        await whook.verify(JSON.stringify(req.body), headers)
 
         //data from request body
-        const {data,type}= req.body
+        const {data, type}= req.body
 
         const userData ={
             _id: data.id,
