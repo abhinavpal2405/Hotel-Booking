@@ -3,6 +3,7 @@ import User from '../models/User.js';
 import { Webhook } from "svix";
 
 const clerWebhooks = async ()=>{
+    console.log("Attempt login")
     try{
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
@@ -30,6 +31,7 @@ const clerWebhooks = async ()=>{
         // switch case difrent event
         switch (type){
             case "user.created":{
+                console.log("new user created")
                 await User.create(userData);
                 break;
             }
