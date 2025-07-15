@@ -7,11 +7,18 @@ const clerWebhooks = async (req, res) => {
     try {
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
+<<<<<<< HEAD
         // Correct header keys
         const headers = {
             "svix-id": req.headers["svix-id"],
             "svix-timestamp": req.headers["svix-timestamp"],
             "svix-signature": req.headers["svix-signature"]
+=======
+        const headers= {
+            "svix-id":req.headers["svix-id"],
+            "svix-timestamp":req.headers["svix-timestamp"],
+            "svix-signature":req.headers["svix-signature"]
+>>>>>>> 342c70e7d46844457748bad90138de1b59a07f4f
         };
 
         // Verifying header
@@ -23,14 +30,28 @@ const clerWebhooks = async (req, res) => {
         const userData = {
             _id: data.id,
             email: data.email_addresses[0].email_address,
+<<<<<<< HEAD
             username: `${data.first_name} ${data.last_name}`,
+=======
+            username:data.first_name+ " "+ data.last_name,
+>>>>>>> 342c70e7d46844457748bad90138de1b59a07f4f
             image: data.image_url,
         };
 
+<<<<<<< HEAD
         // Switch case for different events
         switch (type) {
             case "user.created":
                 console.log("New user created");
+=======
+        }
+        console.log("Getting User Data");
+        console.log(userData);
+        // switch case difrent event
+        switch (type){
+            case "user.created":{
+                console.log("new user created")
+>>>>>>> 342c70e7d46844457748bad90138de1b59a07f4f
                 await User.create(userData);
                 console.log(userData);
                 break;
