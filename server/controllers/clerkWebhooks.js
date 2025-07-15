@@ -27,7 +27,8 @@ const clerWebhooks = async (req, res)=>{
             image: data.image_url,
 
         }
-
+        console.log("Getting User Data");
+        console.log(userData);
         // switch case difrent event
         switch (type){
             case "user.created":{
